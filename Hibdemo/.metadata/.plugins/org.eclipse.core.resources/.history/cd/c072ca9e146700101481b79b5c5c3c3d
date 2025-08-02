@@ -1,0 +1,32 @@
+package com.pwskills.HibDemo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+/**
+ * Hello world!
+ */
+public class App {
+    public static void main(String[] args) {
+Student stud = new Student();
+Student stud1 = new Student();
+//stud.setName("Kuldeep");
+//stud.setRollno(12);
+//stud.setMarks(90);
+
+Configuration config = new Configuration().configure().addAnnotatedClass(Student.class);
+SessionFactory sf = config.buildSessionFactory();
+Session session = sf.openSession();
+
+//stud=session.get(Student.class, 11);
+stud=session.load(Student.class, 11);
+stud1=session.load(Student.class, 11);
+//Transaction tx = session.beginTransaction();
+//session.save(stud);
+//tx.commit();
+System.out.println(stud);
+System.out.println(stud1);
+    }
+}

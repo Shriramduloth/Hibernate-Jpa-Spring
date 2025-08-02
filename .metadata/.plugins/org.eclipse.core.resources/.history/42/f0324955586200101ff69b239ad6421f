@@ -1,0 +1,22 @@
+package insertQuery;
+
+import java.sql.Connection;
+import java.sql.Statement;
+
+import in.JDBCUtil.JDBCUtil;
+
+public class insertJdbcQuery {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection connection=null;
+		Statement statement =null;
+		
+		connection=JDBCUtil.getJDBCConnection();
+		
+		Statement statement= connection.createStatement();
+		String myQuery = "insert into student(id,name,city) values(11,'Ram','Mahendragarh');";
+		int row affected =statement.executeUpdate(myQuery);
+	}
+
+}

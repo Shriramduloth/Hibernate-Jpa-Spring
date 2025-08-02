@@ -1,0 +1,50 @@
+package CRUDoper;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import in.JDBCUtil.JDBCUtil;
+
+public class DeleteQyery {
+
+	public static void main(String[] args) {
+		Connection connection=null;
+		PreparedStatement preparedstatement =null;
+		Scanner scan = new Scanner(System.in);
+		
+		try {
+			connection=JDBCUtil.getJDBCConnection();
+			String myQuery = "delete student where id =?;";
+			preparedstatement= connection.prepareStatement(myQuery);
+			if(preparedstatement!=null) {
+				System.out.println("Enter id to delete data");
+				int id = scan.nextInt();
+				preparedstatement.setInt(1, id);
+				int rowAffected =preparedstatement.executeUpdate();
+			if(rowAffected !=0) {
+				System.out.println("Row deleted successfully");
+			}
+			else {
+				System.out.println("No row effected");
+			}
+			}
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				JDBCUtil.closeResources(connection, preparedstatement);
+				scan.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

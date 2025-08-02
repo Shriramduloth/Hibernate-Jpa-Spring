@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jakarta.persistence.Cacheable"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.Cache"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.CacheConcurrencyStrategy"/>
+    <fullyQualifiedTypeName name="javax.persistence.Cacheable"/>
+</qualifiedTypeNameHistroy>

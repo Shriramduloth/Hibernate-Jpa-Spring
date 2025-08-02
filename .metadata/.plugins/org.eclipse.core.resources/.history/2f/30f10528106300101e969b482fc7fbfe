@@ -1,0 +1,43 @@
+package CRUDoper;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import in.JDBCUtil.JDBCUtil;
+
+public class insertJdbcQuery {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection connection=null;
+		Statement statement =null;
+		
+		try {
+			connection=JDBCUtil.getJDBCConnection();
+			statement= connection.createStatement();
+			String myQuery = "insert into student(id,name,city) values(11,'Ram','Mahendragarh');";
+			int rowAffected =statement.executeUpdate(myQuery);
+			if(rowAffected !=0) {
+				System.out.println("Row inserted successfully");
+			}
+			else {
+				System.out.println("No row effected");
+			}
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				JDBCUtil.closeResources(connection, statement);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+
+}

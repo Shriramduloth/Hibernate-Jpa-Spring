@@ -1,0 +1,11 @@
+package com.pwskills.HibDemo;
+
+/**
+ * Hello world!
+ */
+public class App {
+    public static void main(String[] args) {
+Student stud = new Student();
+System.out.println(stud);
+    }
+}

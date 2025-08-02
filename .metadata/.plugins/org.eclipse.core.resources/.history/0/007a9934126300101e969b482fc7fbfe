@@ -1,0 +1,55 @@
+package CRUDoper;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import in.JDBCUtil.JDBCUtil;
+
+public class UpdateQuery {
+	public static void main(String []args) {
+		Connection connection=null;
+		PreparedStatement preparedstatement =null;
+		Scanner scan=new Scanner(System.in);
+		
+		try {
+			connection=JDBCUtil.getJDBCConnection();
+			if(connection!=null) {
+			String myQuery = "update student set city=? where id=?;";
+			preparedstatement= connection.prepareStatement(myQuery);
+			if(preparedstatement!=null) {
+				System.out.println("Enter the id you want to update");
+				int id =scan.nextInt();
+				System.out.println("Enter the city ");
+				String city=scan.next();
+				preparedstatement.setString(1,city);
+				preparedstatement.setInt(2,id);
+				int roweffected=preparedstatement.executeUpdate();
+				
+				if(roweffected!=0) {
+					System.out.println("Row updated succesfully");
+					
+				}
+				else {
+					System.out.println("No data updated");
+				}
+			}
+			
+			}
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				JDBCUtil.closeResources(connection, preparedstatement);
+				scan.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}
